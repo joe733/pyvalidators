@@ -77,9 +77,10 @@ def validator(func, *args, **kwargs):
     """
     def wrapper(func, *args, **kwargs):
         value = func(*args, **kwargs)
-        if not value:
-            return ValidationFailure(
-                func, func_args_as_dict(func, args, kwargs)
-            )
-        return True
+        return (
+            True
+            if value
+            else ValidationFailure(func, func_args_as_dict(func, args, kwargs))
+        )
+
     return decorator(wrapper, func)

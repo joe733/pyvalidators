@@ -43,11 +43,11 @@ def between(value, min=None, max=None):
 
     .. versionadded:: 0.2
     """
-    if min is None and max is None:
-        raise AssertionError(
-            'At least one of `min` or `max` must be specified.'
-        )
     if min is None:
+        if max is None:
+            raise AssertionError(
+                'At least one of `min` or `max` must be specified.'
+            )
         min = Min
     if max is None:
         max = Max

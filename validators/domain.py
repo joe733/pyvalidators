@@ -13,9 +13,7 @@ pattern = re.compile(
 def to_unicode(obj, charset='utf-8', errors='strict'):
     if obj is None:
         return None
-    if not isinstance(obj, bytes):
-        return str(obj)
-    return obj.decode(charset, errors)
+    return obj.decode(charset, errors) if isinstance(obj, bytes) else str(obj)
 
 
 @validator

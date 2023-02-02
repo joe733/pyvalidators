@@ -13,15 +13,12 @@ def validate_segwit_address(addr):
 
 def decode_base58(addr):
     alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
-    return sum([
-        (58 ** e) * alphabet.index(i)
-        for e, i in enumerate(addr[::-1])
-    ])
+    return sum((58 ** e) * alphabet.index(i) for e, i in enumerate(addr[::-1]))
 
 
 def validate_old_btc_address(addr):
     "Validate P2PKH and P2SH type address"
-    if not len(addr) in range(25, 35):
+    if len(addr) not in range(25, 35):
         return False
     decoded_bytes = decode_base58(addr).to_bytes(25, "big")
     header = decoded_bytes[:-4]

@@ -53,9 +53,7 @@ def ipv4_cidr(value):
         prefix, suffix = value.split('/', 2)
     except ValueError:
         return False
-    if not ipv4(prefix) or not suffix.isdigit():
-        return False
-    return 0 <= int(suffix) <= 32
+    return 0 <= int(suffix) <= 32 if ipv4(prefix) and suffix.isdigit() else False
 
 
 @validator
@@ -151,6 +149,4 @@ def ipv6_cidr(value):
         prefix, suffix = value.split('/', 2)
     except ValueError:
         return False
-    if not ipv6(prefix) or not suffix.isdigit():
-        return False
-    return 0 <= int(suffix) <= 128
+    return 0 <= int(suffix) <= 128 if ipv6(prefix) and suffix.isdigit() else False

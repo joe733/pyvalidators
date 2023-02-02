@@ -22,7 +22,7 @@ def test_max_is_not_greater_than_itself():
 def test_other_comparison_methods_for_max():
     assert Max <= Max
     assert Max == Max
-    assert not (Max != Max)
+    assert Max == Max
 
 
 @pytest.mark.parametrize(('value',), [
@@ -42,4 +42,4 @@ def test_min_is_not_greater_than_itself():
 def test_other_comparison_methods_for_min():
     assert Min <= Min
     assert Min == Min
-    assert not (Min != Min)
+    assert Min == Min

@@ -24,9 +24,7 @@ class Min(object):
     .. versionadded:: 0.2
     """
     def __lt__(self, other):
-        if other is Min:
-            return False
-        return True
+        return other is not Min
 
 
 @total_ordering
@@ -52,9 +50,7 @@ class Max(object):
     .. versionadded:: 0.2
     """
     def __gt__(self, other):
-        if other is Max:
-            return False
-        return True
+        return other is not Max
 
 
 Min = Min()

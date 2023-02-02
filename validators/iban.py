@@ -11,10 +11,7 @@ pattern = re.compile(regex)
 def char_value(char):
     """A=10, B=11, ..., Z=35
     """
-    if char.isdigit():
-        return int(char)
-    else:
-        return 10 + ord(char) - ord('A')
+    return int(char) if char.isdigit() else 10 + ord(char) - ord('A')
 
 
 def modcheck(value):

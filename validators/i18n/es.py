@@ -93,7 +93,7 @@ def es_cif(doi):
     elif first_chr not in 'CDFGJNRUV':
         return False
 
-    return control == str(res) or control == table[res]
+    return control in [str(res), table[res]]
 
 
 @validator
@@ -160,13 +160,13 @@ def es_nie(doi):
     :param doi: DOI to validate
     """
     number_by_letter = {'X': '0', 'Y': '1', 'Z': '2'}
-    special_cases = ['X0000000T']
-
     # NIE must must start with X Y or Z
-    if not doi or doi[0] not in number_by_letter.keys():
-        return False
+    if doi and doi[0] in number_by_letter:
+        special_cases = ['X0000000T']
 
-    return nif_nie_validation(doi, number_by_letter, special_cases)
+        return nif_nie_validation(doi, number_by_letter, special_cases)
+    else:
+        return False
 
 
 @validator

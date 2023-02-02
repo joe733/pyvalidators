@@ -146,9 +146,14 @@ def url(value, public=False):
     :param public: (default=False) Set True to only allow a public IP address
     """
     result = pattern.match(value)
-    if not public:
-        return result
-
-    return result and not any(
-        (result.groupdict().get(key) for key in ('private_ip', 'private_host'))
+    return (
+        result
+        and not any(
+            (
+                result.groupdict().get(key)
+                for key in ('private_ip', 'private_host')
+            )
+        )
+        if public
+        else result
     )

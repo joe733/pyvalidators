@@ -21,7 +21,7 @@ def get_version():
     with open(filename) as f:
         contents = f.read()
     pattern = r"^__version__ = '(.*?)'$"
-    return re.search(pattern, contents, re.MULTILINE).group(1)
+    return re.search(pattern, contents, re.MULTILINE)[1]
 
 
 extras_require = {

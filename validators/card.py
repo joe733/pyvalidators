@@ -28,7 +28,7 @@ def card_number(value):
     try:
         digits = list(map(int, value))
         odd_sum = sum(digits[-1::-2])
-        even_sum = sum([sum(divmod(2 * d, 10)) for d in digits[-2::-2]])
+        even_sum = sum(sum(divmod(2 * d, 10)) for d in digits[-2::-2])
         return (odd_sum + even_sum) % 10 == 0
     except ValueError:
         return False
@@ -136,9 +136,7 @@ def diners(value):
     :param value: Diners Club card number string to validate
     """
     pattern = re.compile(r'^(30|36|38|39)')
-    return (
-        card_number(value) and len(value) in [14, 16] and pattern.match(value)
-    )
+    return card_number(value) and len(value) in {14, 16} and pattern.match(value)
 
 
 @validator
